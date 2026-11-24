@@ -1,52 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: #f7f6f2;
+  color: #24231f;
+  font-family: Arial, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: inherit;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
+  height: 68px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  padding: 0 max(calc((100% - 1120px) / 2), 24px);
+  border-bottom: 1px solid #e9e7e0;
+  background: #fff;
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.cart-link {
+  padding: 10px 16px;
+  border: 1px solid #ddd8cd;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.page {
+  max-width: 1120px;
+  min-height: calc(100vh - 140px);
+  margin: 36px auto;
+  padding: 0 24px;
+}
+
+h1 {
+  margin: 0 0 24px;
+  font-size: 32px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filters input:not([type='checkbox']),
+.filters select,
+.summary input {
+  padding: 11px 12px;
+  border: 1px solid #d6d2c9;
+  border-radius: 4px;
+  background: white;
+}
+
+.filters input:not([type='checkbox']) {
+  width: 280px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  padding: 14px;
+  border-radius: 6px;
+  background: white;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 245px;
+  background: #eee;
+  object-fit: cover;
+}
+
+.product-card h2 {
+  margin: 14px 0 8px;
+  font-size: 20px;
+}
+
+.product-card p,
+.price {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(300px, 0.9fr);
+  gap: 42px;
+  margin-top: 24px;
+}
+
+.hero-image {
+  width: 100%;
+  max-height: 580px;
+  background: #eee;
+  object-fit: contain;
+}
+
+.thumbs,
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 22px;
+}
+
+.thumbs button,
+.options button,
+.quantity button,
+.summary button,
+.primary {
+  padding: 9px 13px;
+  border: 1px solid #d5d1c8;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+
+.thumbs button {
+  padding: 3px;
+}
+
+.thumbs img {
+  width: 54px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.selected {
+  outline: 2px solid #4d684c;
+}
+
+.options button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.primary {
+  margin-top: 12px;
+  padding: 13px 20px;
+  background: #314a32;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.cart-items {
+  display: grid;
+  gap: 12px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px;
+  border-radius: 6px;
+  background: white;
+}
+
+.cart-item > img {
+  width: 90px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.cart-info {
+  flex: 1;
+}
+
+.cart-info p {
+  color: #68665f;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.remove {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.summary {
+  max-width: 450px;
+  margin: 28px 0 0 auto;
+  padding: 20px;
+  border-radius: 6px;
+  background: white;
+}
+
+.summary label {
+  display: block;
+}
+
+.summary input {
+  margin-left: 8px;
+}
+
+.summary button {
+  margin-left: 8px;
+}
+
+.summary h2 {
+  margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+  .page {
+    margin: 24px auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  .detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .cart-item {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .quantity {
+    width: 100%;
+    justify-content: flex-end;
   }
 }
